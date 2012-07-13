@@ -10,5 +10,8 @@
     Hello world!
 </h1>
 ${controllerMessage}
+
+<hr>
+${message}
 </body>
 </html>
