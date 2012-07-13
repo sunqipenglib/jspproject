@@ -9,7 +9,7 @@
 <h1>
     Hello world!
 </h1>
-${controllerMessage}
+${recordcount}
 
 <hr>
 ${message}
