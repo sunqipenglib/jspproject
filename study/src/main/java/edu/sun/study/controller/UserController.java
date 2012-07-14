@@ -3,6 +3,7 @@ package edu.sun.study.controller;
 import com.google.gson.Gson;
 import edu.sun.study.dao.UserInformationDao;
 import edu.sun.study.po.UserInformation;
+import org.apache.commons.lang.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,12 +11,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+
 /**
- * User: sunqipeng
- * Date: 12-7-13
+ * User: sunqipeng Date: 12-7-13
  */
 @Controller
 @RequestMapping("/users/*")
@@ -59,12 +61,13 @@ public class UserController {
         model.addAttribute("userCount", userInformationDao.getCount());
 
         Gson gson = new Gson();
+
         model.addAttribute("ajaxUsers", gson.toJson(userInformationList));
     }
 
     @RequestMapping("date")
     @ResponseBody
     public String getDate() {
-        return new Date().toString();
+        return DateFormatUtils.format(Calendar.getInstance(), "yyyy-MM-dd");
     }
 }

@@ -3,7 +3,6 @@ package edu.sun.study.po;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.Date;
 
 /**
  * User: sunqipeng
@@ -16,7 +15,7 @@ public class UserInformation {
     private Integer id;
     private String name;
     private String address;
-    private Date dob;
+    private String dob;
     private String email;
     private String phone;
     private String idCardNum;
@@ -29,11 +28,11 @@ public class UserInformation {
         this.address = address;
     }
 
-    public Date getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 
