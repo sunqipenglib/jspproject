@@ -89,13 +89,14 @@
 <div id="container">
     <div id="content">
 
-        <div class="error">
-            {{errorMessage}}
+        <div class="panel">
+        这里验证的关键是使用name属性input元素和验证的相关变量串联起来
         </div>
+
         <div class="panel" id="save1">
             <form name="form">
                 <input type="hidden" ng-model="user.id">
-                姓名:<input ng-model="user.name" name="name" required> {{form.name.$error}}{{form.name.$valid}}<br>
+                姓名:<input ng-model="user.name" name="name" required> {{name.$error}}{{form.name.$valid}}<br>
                 电子邮箱：<input ng-model="user.email" type="email" name="email" required>
                 {{form.email.$error}}{{form.email.$valid}}<br>
                 地址：<input ng-model="user.address" name="address">{{form.address.$error}}{{form.address.$valid}}<br>
