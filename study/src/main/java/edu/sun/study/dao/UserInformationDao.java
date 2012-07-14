@@ -20,7 +20,7 @@ public class UserInformationDao {
 
     public void save10() {
         UserInformation userInformation = new UserInformation();
-        userInformation.setAddress("addrsss"+System.currentTimeMillis());
+        userInformation.setAddress("addrsss" + System.currentTimeMillis());
         entityManager.persist(userInformation);
     }
 
@@ -35,5 +35,11 @@ public class UserInformationDao {
     public void save(UserInformation userInformation) {
 
         entityManager.persist(userInformation);
+    }
+
+    public void deleteUserInfoById(String id) {
+        int i = entityManager.createQuery("delete from UserInformation u where u.id=:id").setParameter("id", Integer.parseInt(id)).executeUpdate();
+        entityManager.flush();
+        System.out.println(i);
     }
 }

@@ -17,7 +17,16 @@
                         $scope.user = "";
                     }).error(function () {
                     });
-        }
+        };
+
+        $scope.deleteUser = function (id) {
+
+//            $window.alert(id);
+            $http.get("${baseUrl}users/delete/" + id).success(function (data) {
+                $scope.usersajax = data;
+            })
+        };
+
 
         $scope.getDate = function () {
             $http.get("date").success(function (data) {
@@ -25,6 +34,9 @@
                 $scope.currentDate = data;
             })
         };
+        $scope.test = function (value) {
+            $window.alert(value);
+        }
     }
 </script>
 <body ng-app ng-controller="UserInforController">
@@ -79,25 +91,28 @@
                 <th>address</th>
                 <th>email</th>
                 <th>dob</th>
+                <th>删除</th>
                 </thead>
                 <tbody>
-                <tr ng-repeat="u in usersajax |  filter : query | orderBy:sort" onclick="select({{u.id}})"
-                ">
-                <td>
-                    {{u.id}}
-                </td>
-                <td>
-                    {{u.name}}
-                </td>
-                <td>
-                    {{u.address}}
-                </td>
-                <td>
-                    {{u.email}}
-                </td>
-                <td>
-                    {{u.dob}}
-                </td>
+                <tr ng-repeat="u in usersajax |  filter : query | orderBy:sort">
+                    <td>
+                        {{u.id}}
+                    </td>
+                    <td>
+                        {{u.name}}
+                    </td>
+                    <td>
+                        {{u.address}}
+                    </td>
+                    <td>
+                        {{u.email}}
+                    </td>
+                    <td>
+                        {{u.dob}}
+                    </td>
+                    <td>
+                        <input type="button" ng-click="deleteUser(u.id)" value=" Delete">
+                    </td>
 
                 </tr>
                 </tbody>

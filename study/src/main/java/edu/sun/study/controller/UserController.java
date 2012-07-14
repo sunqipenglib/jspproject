@@ -6,6 +6,7 @@ import edu.sun.study.po.UserInformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -36,6 +37,13 @@ public class UserController {
         userInformationDao.save(userInformation);
         query(model);
         return model.asMap().get("ajaxUsers").toString();
+    }
+
+    @ResponseBody
+    @RequestMapping("delete/{id}")
+    public String delete(@PathVariable("id") String id) {
+        userInformationDao.deleteUserInfoById(id);
+        return new Gson().toJson(userInformationDao.list());
     }
 
     /**
