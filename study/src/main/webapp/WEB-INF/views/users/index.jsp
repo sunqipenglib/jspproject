@@ -1,7 +1,16 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ include file="../common.jsp" %>
-
 <script type="text/javascript">
 
+    var simpleAppModule = angular.module('simpleApp', []);
+
+    // configure the module.
+    // in this example we will create a greeting filter
+    simpleAppModule.filter('greet', function () {
+        return function (name) {
+            return 'Hello, ' + name + '!';
+        };
+    });
     var UserInforController = function ($scope, $http, $window) {
         $scope.usersajax =${ajaxUsers};
 
@@ -19,9 +28,11 @@
                     });
         };
 
+        $scope.updateUser = function (user) {
+            $scope.user = user;
+        }
         $scope.deleteUser = function (id) {
 
-//            $window.alert(id);
             $http.get("${baseUrl}users/delete/" + id).success(function (data) {
                 $scope.usersajax = data;
             })
@@ -39,15 +50,20 @@
         }
     }
 </script>
+<style type="text/css">
+    input.ng-invalid.ng-dirty {
+        background-color: #FA787E;
+    }
+
+    input.ng-valid.ng-dirty {
+        background-color: #78FA89;
+    }
+</style>
 <body ng-app ng-controller="UserInforController">
 <div id="header">Header</div>
 <div id="sidebar">
     <h1>
-        <a href="index">User Index</a>
-    </h1>
-
-    <h1>
-        <a href="add">Add User</a>
+        <a href="#">新增用户</a>
     </h1>
 
 </div>
@@ -56,14 +72,10 @@
 
         <div class="panel">
             <input type="hidden" ng-model="user.id">
-            <input ng-model="user.name">
-            <input ng-model="user.email">
+            <input ng-model="user.name" required>
+            <input ng-model="user.email" type="email ">
             <input ng-model="user.address">
-            <input type="button" ng-click="save()">
-
-            <hr>
-
-            {{user.name}};{{user.email}};{{user.address}};
+            <input type="button" ng-click="save()" value="保存">
         </div>
 
         <div class="panel">
@@ -91,7 +103,7 @@
                 <th>address</th>
                 <th>email</th>
                 <th>dob</th>
-                <th>删除</th>
+                <th>操作</th>
                 </thead>
                 <tbody>
                 <tr ng-repeat="u in usersajax |  filter : query | orderBy:sort">
@@ -111,17 +123,14 @@
                         {{u.dob}}
                     </td>
                     <td>
-                        <input type="button" ng-click="deleteUser(u.id)" value=" Delete">
+                        <input type="button" ng-click="deleteUser(u.id)" value="删除">
+                        <input type="button" ng-click="updateUser(u)" value="更新">
                     </td>
 
                 </tr>
                 </tbody>
             </table>
         </div>
-        <div class="panel">
-            {{'yet'+'!'}}
-        </div>
-
     </div>
 
 </div>
