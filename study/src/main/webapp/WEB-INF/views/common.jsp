@@ -4,12 +4,8 @@
 
 <c:url value="/" var="baseUrl">
 </c:url>
-<!doctype html>
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7 ng-app: docsApp;" lang="en" ng-controller="DocsController"> <![endif]-->
-<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8 ng-app: docsApp;" lang="en" ng-controller="DocsController"> <![endif]-->
-<!--[if IE 8]> <html class="no-js lt-ie9 ng-app: docsApp;" lang="en" ng-controller="DocsController"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js ng-app: docsApp;" lang="en" ng-controller="DocsController"> <!--<![endif]-->
+<!doctype html >
+<html ng-app>
 <head>
     <title>Angular Study</title>
     <link rel="stylesheet" type="text/css" href="${baseUrl}/resources/css/screen.css">

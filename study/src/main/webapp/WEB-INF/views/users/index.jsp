@@ -78,7 +78,7 @@
         background-color: #78FA89;
     }
 </style>
-<body ng-app ng-controller="UserInforController">
+<body ng-controller="UserInforController">
 <div id="header">Header</div>
 <div id="sidebar">
     <h1>
