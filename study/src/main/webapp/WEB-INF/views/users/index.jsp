@@ -11,6 +11,7 @@
             return 'Hello, ' + name + '!';
         };
     });
+
     var UserInforController = function ($scope, $http, $window) {
         $scope.usersajax =${ajaxUsers};
 
@@ -18,16 +19,26 @@
         $scope.user;
 
         $scope.save = function () {
-            $http({url:'${baseUrl}users/addAjax',
-                        method:'POST',
-                        params:$scope.user}
-            ).success(
-                    function (data) {
-                        $scope.usersajax = data;
-                        $scope.user = "";
-                    }).error(function (data) {
-                        //$scope.errorMessage = data;
-                    });
+
+            //$window.alert($scope.form.name.$valid);
+            if ($scope.form.name.$valid &&
+                    $scope.form.email.$valid &&
+                    $scope.form.address.$valid &&
+                    $scope.form.dob.$valid
+                    ) {
+                $http({url:'${baseUrl}users/addAjax',
+                            method:'POST',
+                            params:$scope.user}
+                ).success(
+                        function (data) {
+                            $scope.usersajax = data;
+                            $scope.user = "";
+                        }).error(function (data) {
+                            //$scope.errorMessage = data;
+                        });
+            } else {
+                $window.alert("there a some error");
+            }
         };
 
         $scope.updateUser = function (user) {
@@ -55,6 +66,7 @@
 
         $("input[type=button]").button();
         $("save1").dialog();
+        $("#dob").datepicker();
     }
 </script>
 <style type="text/css">
@@ -81,12 +93,19 @@
             {{errorMessage}}
         </div>
         <div class="panel" id="save1">
-            <input type="hidden" ng-model="user.id">
-            <input ng-model="user.name" required>
-            <input ng-model="user.email" type="email ">
-            <input ng-model="user.address">
-            <input ng-model="user.dob">
-            <input type="button" ng-click="save()" value="保存" id="saveButton">
+            <form name="form">
+                <input type="hidden" ng-model="user.id">
+                姓名:<input ng-model="user.name" name="name" required> {{form.name.$error}}{{form.name.$valid}}<br>
+                电子邮箱：<input ng-model="user.email" type="email" name="email" required>
+                {{form.email.$error}}{{form.email.$valid}}<br>
+                地址：<input ng-model="user.address" name="address">{{form.address.$error}}{{form.address.$valid}}<br>
+                出生日期：<input ng-model="user.dob" id="dob" name="dob"> {{form.dob.$error}}{{form.dob.$valid}}<br>
+
+                <input type="button" ng-click="save()" value="保存" id="saveButton">
+            </form>
+            <br>
+
+            <hr>
         </div>
 
         <div class="panel">
