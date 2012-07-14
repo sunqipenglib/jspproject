@@ -1,12 +1,16 @@
 package edu.sun.study.controller;
 
+import com.google.gson.Gson;
 import edu.sun.study.dao.UserInformationDao;
 import edu.sun.study.po.UserInformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,20 +25,51 @@ public class UserController {
 
     @RequestMapping("index")
     public String index(Model model) {
-        List<UserInformation> userInformationList = userInformationDao.list();
-        model.addAttribute("userCount", userInformationList.size());
-        model.addAttribute("users", userInformationList);
+
+        query(model);
         return "users/index";
     }
 
     @RequestMapping("add")
-    public String add(Model model) {
-        userInformationDao.save10();
+    public String add(Model model, HttpServletRequest request, UserInformation userInformation) {
+
+        System.out.println(userInformation);
+        //userInformationDao.save10();
+        userInformationDao.save(userInformation);
+        query(model);
+        return "users/index";
+    }
+
+    @RequestMapping("addAjax")
+    @ResponseBody
+    public String addAjax(Model model, UserInformation userInformation) {
+
+        System.out.println(userInformation);
+        //userInformationDao.save10();
+        userInformationDao.save(userInformation);
+        query(model);
+        return model.asMap().get("ajaxUsers").toString();
+    }
+
+    /**
+     * we query tge nodel
+     *
+     * @param model
+     */
+    private void query(Model model) {
         List<UserInformation> userInformationList = userInformationDao.list();
 
         System.out.println();
         model.addAttribute("users", userInformationList);
         model.addAttribute("userCount", userInformationDao.getCount());
-        return "users/index";
+
+        Gson gson = new Gson();
+        model.addAttribute("ajaxUsers", gson.toJson(userInformationList));
+    }
+
+    @RequestMapping("date")
+    @ResponseBody
+    public String getDate() {
+        return new Date().toString();
     }
 }

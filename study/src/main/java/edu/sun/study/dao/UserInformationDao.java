@@ -20,7 +20,7 @@ public class UserInformationDao {
 
     public void save10() {
         UserInformation userInformation = new UserInformation();
-        userInformation.setName("name" + System.currentTimeMillis());
+        userInformation.setAddress("addrsss"+System.currentTimeMillis());
         entityManager.persist(userInformation);
     }
 
@@ -30,5 +30,10 @@ public class UserInformationDao {
 
     public List list() {
         return entityManager.createQuery("select u from UserInformation u").getResultList();
+    }
+
+    public void save(UserInformation userInformation) {
+
+        entityManager.persist(userInformation);
     }
 }
