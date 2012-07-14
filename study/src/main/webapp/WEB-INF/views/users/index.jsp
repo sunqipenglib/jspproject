@@ -15,6 +15,7 @@
         $scope.usersajax =${ajaxUsers};
 
         $scope.currentDate;
+        $scope.user;
 
         $scope.save = function () {
             $http({url:'${baseUrl}users/addAjax',
@@ -24,13 +25,15 @@
                     function (data) {
                         $scope.usersajax = data;
                         $scope.user = "";
-                    }).error(function () {
+                    }).error(function (data) {
+                        //$scope.errorMessage = data;
                     });
         };
 
         $scope.updateUser = function (user) {
             $scope.user = user;
         }
+
         $scope.deleteUser = function (id) {
 
             $http.get("${baseUrl}users/delete/" + id).success(function (data) {
@@ -43,11 +46,15 @@
             $http.get("date").success(function (data) {
 
                 $scope.currentDate = data;
+                $scope.user.dob = data;
             })
         };
         $scope.test = function (value) {
             $window.alert(value);
         }
+
+        $("input[type=button]").button();
+        $("save1").dialog();
     }
 </script>
 <style type="text/css">
@@ -70,12 +77,16 @@
 <div id="container">
     <div id="content">
 
-        <div class="panel">
+        <div class="error">
+            {{errorMessage}}
+        </div>
+        <div class="panel" id="save1">
             <input type="hidden" ng-model="user.id">
             <input ng-model="user.name" required>
             <input ng-model="user.email" type="email ">
             <input ng-model="user.address">
-            <input type="button" ng-click="save()" value="保存">
+            <input ng-model="user.dob">
+            <input type="button" ng-click="save()" value="保存" id="saveButton">
         </div>
 
         <div class="panel">
@@ -94,15 +105,15 @@
                 dob
             </option>
         </select>
-            <input type="button" ng-click="getDate()" value="Get Date">当前时间:
+            <input type="button" ng-click="getDate()" value="获取当前时间">当前时间:
             {{currentDate}}
             <table class="dataTable">
                 <thead>
-                <th>id</th>
-                <th>name</th>
-                <th>address</th>
-                <th>email</th>
-                <th>dob</th>
+                <th>编号</th>
+                <th>姓名</th>
+                <th>地址</th>
+                <th>电子邮件地址</th>
+                <th>出生日期</th>
                 <th>操作</th>
                 </thead>
                 <tbody>
@@ -123,8 +134,10 @@
                         {{u.dob}}
                     </td>
                     <td>
-                        <input type="button" ng-click="deleteUser(u.id)" value="删除">
-                        <input type="button" ng-click="updateUser(u)" value="更新">
+                        <input type="button" ng-click="deleteUser(u.id)"
+                               class="ui-button ui-widget ui-state-default ui-corner-all" value="删除">
+                        <input type="button" ng-click="updateUser(u)"
+                               class="ui-button ui-widget ui-state-default ui-corner-all" value="更新">
                     </td>
 
                 </tr>
