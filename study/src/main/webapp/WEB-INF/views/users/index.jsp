@@ -8,20 +8,13 @@
         $scope.currentDate;
 
         $scope.save = function () {
-            //$window.alert($scope.user);
-            <%--$http.post("${baseUrl}users/addAjax", $scope.user).success(--%>
-            <%--function (data) {--%>
-            <%--//$window.alert(data);--%>
-
-            <%--$scope.usersajax = data;--%>
-            <%--}).error(function (data) {--%>
-            <%--})--%>
             $http({url:'${baseUrl}users/addAjax',
                         method:'POST',
                         params:$scope.user}
             ).success(
                     function (data) {
                         $scope.usersajax = data;
+                        $scope.user = "";
                     }).error(function () {
                     });
         }
@@ -58,7 +51,7 @@
 
             <hr>
 
-            {{user.name}};
+            {{user.name}};{{user.email}};{{user.address}};
         </div>
 
         <div class="panel">

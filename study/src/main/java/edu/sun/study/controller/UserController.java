@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
 
@@ -30,22 +29,10 @@ public class UserController {
         return "users/index";
     }
 
-    @RequestMapping("add")
-    public String add(Model model, HttpServletRequest request, UserInformation userInformation) {
-
-        System.out.println(userInformation);
-        //userInformationDao.save10();
-        userInformationDao.save(userInformation);
-        query(model);
-        return "users/index";
-    }
-
     @RequestMapping("addAjax")
     @ResponseBody
     public String addAjax(Model model, UserInformation userInformation) {
 
-        System.out.println(userInformation);
-        //userInformationDao.save10();
         userInformationDao.save(userInformation);
         query(model);
         return model.asMap().get("ajaxUsers").toString();
