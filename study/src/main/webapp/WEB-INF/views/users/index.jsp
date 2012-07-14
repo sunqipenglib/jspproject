@@ -94,8 +94,8 @@
                 dob
             </option>
         </select>
-            <input type="button" ng-click="getDate()" value="Get Date">时间
-            {{query}} & {{sort}} &{{currentDate}}
+            <input type="button" ng-click="getDate()" value="Get Date">当前时间:
+            {{currentDate}}
             <table class="dataTable">
                 <thead>
                 <th>id</th>

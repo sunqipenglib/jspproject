@@ -1,8 +1,9 @@
 package edu.sun.study.controller;
 
-import java.util.Date;
-import java.util.List;
-
+import com.google.gson.Gson;
+import edu.sun.study.dao.UserInformationDao;
+import edu.sun.study.po.UserInformation;
+import org.apache.commons.lang.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,10 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.gson.Gson;
-
-import edu.sun.study.dao.UserInformationDao;
-import edu.sun.study.po.UserInformation;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -22,52 +22,52 @@ import edu.sun.study.po.UserInformation;
 @Controller
 @RequestMapping("/users/*")
 public class UserController {
-	@Autowired
-	UserInformationDao userInformationDao;
+    @Autowired
+    UserInformationDao userInformationDao;
 
-	@RequestMapping("index")
-	public String index(Model model) {
+    @RequestMapping("index")
+    public String index(Model model) {
 
-		query(model);
-		return "users/index";
-	}
+        query(model);
+        return "users/index";
+    }
 
-	@RequestMapping("addAjax")
-	@ResponseBody
-	public String addAjax(Model model, UserInformation userInformation) {
+    @RequestMapping("addAjax")
+    @ResponseBody
+    public String addAjax(Model model, UserInformation userInformation) {
 
-		userInformationDao.save(userInformation);
-		query(model);
-		return model.asMap().get("ajaxUsers").toString();
-	}
+        userInformationDao.save(userInformation);
+        query(model);
+        return model.asMap().get("ajaxUsers").toString();
+    }
 
-	@ResponseBody
-	@RequestMapping("delete/{id}")
-	public String delete(@PathVariable("id") String id) {
-		userInformationDao.deleteUserInfoById(id);
-		return new Gson().toJson(userInformationDao.list());
-	}
+    @ResponseBody
+    @RequestMapping("delete/{id}")
+    public String delete(@PathVariable("id") String id) {
+        userInformationDao.deleteUserInfoById(id);
+        return new Gson().toJson(userInformationDao.list());
+    }
 
-	/**
-	 * we query tge nodel
-	 * 
-	 * @param model
-	 */
-	private void query(Model model) {
-		List<UserInformation> userInformationList = userInformationDao.list();
+    /**
+     * we query tge nodel
+     *
+     * @param model
+     */
+    private void query(Model model) {
+        List<UserInformation> userInformationList = userInformationDao.list();
 
-		System.out.println();
-		model.addAttribute("users", userInformationList);
-		model.addAttribute("userCount", userInformationDao.getCount());
+        System.out.println();
+        model.addAttribute("users", userInformationList);
+        model.addAttribute("userCount", userInformationDao.getCount());
 
-		Gson gson = new Gson();
+        Gson gson = new Gson();
 
-		model.addAttribute("ajaxUsers", gson.toJson(userInformationList));
-	}
+        model.addAttribute("ajaxUsers", gson.toJson(userInformationList));
+    }
 
-	@RequestMapping("date")
-	@ResponseBody
-	public String getDate() {
-		return new Date().toString();
-	}
+    @RequestMapping("date")
+    @ResponseBody
+    public String getDate() {
+        return DateFormatUtils.format(Calendar.getInstance(), "yyyy-MM-dd");
+    }
 }
