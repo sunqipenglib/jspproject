@@ -90,7 +90,7 @@
     <div id="content">
 
         <div class="panel">
-        这里验证的关键是使用name属性input元素和验证的相关变量串联起来
+            这里验证的关键是使用name属性input元素和验证的相关变量串联起来
         </div>
 
         <div class="panel" id="save1">
@@ -101,6 +101,7 @@
                 {{form.email.$error}}{{form.email.$valid}}<br>
                 地址：<input ng-model="user.address" name="address">{{form.address.$error}}{{form.address.$valid}}<br>
                 出生日期：<input ng-model="user.dob" id="dob" name="dob"> {{form.dob.$error}}{{form.dob.$valid}}<br>
+                <input name="number" type="number">{{number.$error}}{{number.$valid}}
 
                 <input type="button" ng-click="save()" value="保存" id="saveButton">
             </form>
