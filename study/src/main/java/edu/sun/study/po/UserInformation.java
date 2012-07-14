@@ -14,12 +14,12 @@ public class UserInformation {
     @Id
     @GeneratedValue
     private Integer id;
-    private String name = "name" + System.currentTimeMillis();
-    private String address = "address" + System.currentTimeMillis();
-    private Date dob = new Date();
-    private String email = "email" + System.currentTimeMillis();
-    private String phone = "phone" + System.currentTimeMillis();
-    private String idCardNum = "idCardNum" + System.currentTimeMillis();
+    private String name;
+    private String address;
+    private Date dob;
+    private String email;
+    private String phone;
+    private String idCardNum;
 
     public String getAddress() {
         return address;
@@ -75,5 +75,18 @@ public class UserInformation {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+        return "UserInformation{" +
+                "address='" + address + '\'' +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                ", dob=" + dob +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", idCardNum='" + idCardNum + '\'' +
+                '}';
     }
 }

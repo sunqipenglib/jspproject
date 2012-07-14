@@ -7,7 +7,7 @@
 <head>
     <title>Angular Study</title>
     <link rel="stylesheet" type="text/css" href="${baseUrl}/resources/css/screen.css">
-    <script type="text/javascript" src="${baseUrl}/resources/js/angular1.01.js"></script>
+    <script type="text/javascript" src="${baseUrl}/resources/js/ajs.js"></script>
 </head>
 <body>
 <a href="${baseUrl}/users/index">User Index</a>
