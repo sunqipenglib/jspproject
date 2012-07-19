@@ -138,7 +138,7 @@
                 <th>操作</th>
                 </thead>
                 <tbody>
-                <tr ng-repeat="u in usersajax |  filter : query | orderBy:sort">
+                <tr ng-repeat="u in usersajax |  filter : query | orderBy:sort" ng-class-odd="odd">
                     <td>
                         {{u.id}}
                     </td>

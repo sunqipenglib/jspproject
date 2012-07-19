@@ -1,7 +1,9 @@
+# Package Files #s
 study/.idea/
-*.class
 study/target/
-# Package Files #
+richface/.idea/
+richface/target/
+*.class
 *.jar
 *.war
 *.ear
