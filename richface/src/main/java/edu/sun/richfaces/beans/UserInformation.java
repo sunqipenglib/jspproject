@@ -7,9 +7,14 @@ package edu.sun.richfaces.beans;
 public class UserInformation {
     private String name;
     private String password;
-    private String role;
+    private UserInformation.Role role;
     private String firstName;
     private String lastName;
+
+
+    public enum Role {
+        manager, worker;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -27,14 +32,6 @@ public class UserInformation {
         this.lastName = lastName;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
     public String getName() {
         return name;
     }
@@ -49,5 +46,13 @@ public class UserInformation {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

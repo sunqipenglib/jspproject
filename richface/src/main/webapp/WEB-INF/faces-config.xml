@@ -7,7 +7,8 @@
             message
         </message-bundle>
         <locale-config>
-            <default-locale>cn</default-locale>
+            <default-locale>en</default-locale>
+            <supported-locale>cn</supported-locale>
         </locale-config>
     </application>
 
