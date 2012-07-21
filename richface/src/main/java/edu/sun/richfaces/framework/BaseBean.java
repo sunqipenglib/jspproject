@@ -1,4 +1,4 @@
-package edu.sun.richfaces;
+package edu.sun.richfaces.framework;
 
 import javax.faces.context.FacesContext;
 import java.util.Map;

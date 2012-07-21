@@ -1,4 +1,4 @@
-package edu.sun.richfaces;
+package edu.sun.richfaces.framework;
 
 /**
  * User: sunqipeng
