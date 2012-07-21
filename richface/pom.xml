@@ -84,6 +84,7 @@
     </dependencyManagement>
 
     <dependencies>
+
         <dependency>
             <groupId>org.richfaces.ui</groupId>
             <artifactId>richfaces-components-ui</artifactId>
