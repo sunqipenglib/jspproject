@@ -3,6 +3,8 @@ study/.idea/
 study/target/
 richface/.idea/
 richface/target/
+sjj/.idea/
+sjj/target/
 *.class
 *.jar
 *.war
