@@ -5,6 +5,7 @@ import edu.sun.richfaces.framework.Contant;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import java.io.Serializable;
 
 /**
  * User: sunqipeng
@@ -12,7 +13,7 @@ import javax.faces.bean.SessionScoped;
  */
 @SessionScoped
 @ManagedBean
-public class LoginBean {
+public class LoginBean implements Serializable{
 
     private UserInformation userInformation;
 
@@ -42,16 +43,27 @@ public class LoginBean {
      * @return
      */
     public String login() {
-        if (userInformation.getName().equals("admin")) {
-            userInformation.setRole(UserInformation.Role.manager);
-            return Contant.NAVIGATE_SUCCESS;
-        }
-        if (userInformation.getName().equals("worker")) {
-            userInformation.setRole(UserInformation.Role.worker);
-            return Contant.NAVIGATE_SUCCESS;
-        }
-        return Contant.NAVIGATE_FAILS;
+        return "main";
+        //if (userInformation.getName().equals("admin")) {
+//            userInformation.setRole(UserInformation.Role.manager);
+//            return Contant.NAVIGATE_SUCCESS;
+//        }
+//        if (userInformation.getName().equals("worker")) {
+//            userInformation.setRole(UserInformation.Role.worker);
+//            return Contant.NAVIGATE_SUCCESS;
+//        }
+//        HtmlDataTable dataTable;
+//
+//        return Contant.NAVIGATE_FAILS;
     }
+
+    public String logout() {
+        login = false;
+        userInformation = null;
+        return Contant.NAVIGATE_LOGOUT;
+    }
+
+
 
     /**
      * if current user is a manager, then he can create new project

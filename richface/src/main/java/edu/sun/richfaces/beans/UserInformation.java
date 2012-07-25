@@ -5,7 +5,7 @@ package edu.sun.richfaces.beans;
  * Date: 12-7-21
  */
 public class UserInformation {
-    private String name;
+    private String name = "name" + System.currentTimeMillis();
     private String password;
     private UserInformation.Role role;
     private String firstName;

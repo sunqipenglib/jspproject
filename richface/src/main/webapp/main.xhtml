@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>test</title>
+</h:head>
+
+<body>
+
+<ui:repeat value="#{mainBean.values}" var="v">
+    #{v}
+</ui:repeat>
+
+<h:form>
+    <h:inputText value="#{mainBean.testName}" id="testName"></h:inputText>
+
+    <h:commandButton value="Commit" action="#{mainBean.helloAjax}">
+        <f:ajax render="testName table" execute="testName"></f:ajax>
+    </h:commandButton>
+    <h:dataTable id="table" value="#{mainBean.userInformations}" var="u">
+        <h:column>
+            <f:facet name="header">
+                Name
+            </f:facet>
+            #{u.name}
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                Password
+            </f:facet>
+            #{u.password}
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                Role
+            </f:facet>
+            #{u.role}
+        </h:column>
+
+    </h:dataTable>
+</h:form>
+</body>
+</html>
