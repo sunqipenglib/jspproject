@@ -19,6 +19,16 @@ public class MainBean implements Serializable {
 
     public List<String> values = new ArrayList<String>();
 
+    public String message;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     public List<UserInformation> userInformations = new ArrayList<UserInformation>();
 
     public List<UserInformation> getUserInformations() {
@@ -41,6 +51,11 @@ public class MainBean implements Serializable {
         System.out.println("this the message invoked");
         testName = new Date().toString();
 
+    }
+
+
+    public void save() {
+        message = "data are saved , there are " + userInformations.size() + " data currently";
     }
 
     public void setTestName(String testName) {

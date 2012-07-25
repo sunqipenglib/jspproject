@@ -41,7 +41,13 @@
             #{u.role}
         </h:column>
 
+
     </h:dataTable>
+
+    <h:commandButton action="#{mainBean.save}" value="Save Data">
+        <f:ajax render="message"></f:ajax>
+    </h:commandButton>
+    <h:outputText value="#{mainBean.message}" id="message" style="color: red; font-style: oblique;"></h:outputText>
 </h:form>
 </body>
 </html>
