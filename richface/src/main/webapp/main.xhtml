@@ -20,6 +20,7 @@
 
     <h:commandButton value="Commit" action="#{mainBean.helloAjax}">
         <f:ajax render="testName table" execute="testName"></f:ajax>
+
     </h:commandButton>
     <h:dataTable id="table" value="#{mainBean.userInformations}" var="u">
         <h:column>

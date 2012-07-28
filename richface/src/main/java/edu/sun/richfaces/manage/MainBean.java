@@ -2,8 +2,10 @@ package edu.sun.richfaces.manage;
 
 import edu.sun.richfaces.beans.UserInformation;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.persistence.EntityManager;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,6 +22,7 @@ public class MainBean implements Serializable {
     public List<String> values = new ArrayList<String>();
 
     public String message;
+
 
     public String getMessage() {
         return message;
@@ -45,9 +48,20 @@ public class MainBean implements Serializable {
         return new Date().toString() + testName;
     }
 
+    @PostConstruct
+    public void post() {
+        userInformations = EntityManagerUtils.getEntityManager().createQuery("select u from UserInformation u ").getResultList();
+    }
 
     public void helloAjax() {
-        userInformations.add(new UserInformation());
+
+        //userInformations.add(new UserInformation());
+        EntityManager entityManager = EntityManagerUtils.getEntityManager();
+        entityManager.getTransaction().begin();
+        entityManager.persist(new UserInformation());
+        entityManager.getTransaction().commit();
+        entityManager.createQuery("select u from UserInformation u ").getResultList();
+
         System.out.println("this the message invoked");
         testName = new Date().toString();
 

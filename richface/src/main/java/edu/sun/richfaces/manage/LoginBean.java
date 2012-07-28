@@ -5,6 +5,10 @@ import edu.sun.richfaces.framework.Contant;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceUnit;
 import java.io.Serializable;
 
 /**
@@ -13,7 +17,29 @@ import java.io.Serializable;
  */
 @SessionScoped
 @ManagedBean
-public class LoginBean implements Serializable{
+public class LoginBean implements Serializable {
+
+    @PersistenceContext
+    EntityManager entityManager;
+
+    @PersistenceUnit
+    EntityManagerFactory entityManagerFactory;
+
+    public EntityManagerFactory getEntityManagerFactory() {
+        return entityManagerFactory;
+    }
+
+    public void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
+        this.entityManagerFactory = entityManagerFactory;
+    }
+
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
+
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 
     private UserInformation userInformation;
 
@@ -43,6 +69,19 @@ public class LoginBean implements Serializable{
      * @return
      */
     public String login() {
+
+        entityManagerFactory = javax.persistence.Persistence.createEntityManagerFactory("richface");
+        if (entityManager == null) {
+            System.out.println("the entity manager is null");
+        } else {
+            System.out.println("entity manager is not null");
+        }
+        if (entityManagerFactory == null) {
+            System.out.println("the entityManagerFactory  is null");
+        } else {
+            System.out.println("entityManagerFactory is not null");
+        }
+
         return "main";
         //if (userInformation.getName().equals("admin")) {
 //            userInformation.setRole(UserInformation.Role.manager);
@@ -62,7 +101,6 @@ public class LoginBean implements Serializable{
         userInformation = null;
         return Contant.NAVIGATE_LOGOUT;
     }
-
 
 
     /**
