@@ -135,6 +135,12 @@
             <scope>compile</scope>
         </dependency>
 
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.9</version>
+        </dependency>
+
 
         <!-- Test Dependencies -->
         <dependency>
@@ -230,6 +236,8 @@
                     <scanIntervalSeconds>3</scanIntervalSeconds>
                 </configuration>
             </plugin>
+
+
 
             <!-- Ensures we are compiling at 1.6 level -->
             <plugin>
