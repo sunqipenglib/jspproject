@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<persistence xmlns="http://java.sun.com/xml/ns/persistence"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
-      http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
-             version="1.0">
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/"
+             version="2.0">
+    <persistence-unit name="dbs" transaction-type="RESOURCE_LOCAL">
 
-    <persistence-unit name="acme" transaction-type="RESOURCE_LOCAL">
+        <class>
+            edu.sun.entity.Hello
+        </class>
         <properties>
+            <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbc.JDBCDriver"></property>
+            <property name="javax.persistence.jdbc.user" value="SA"></property>
+            <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mydatabase"></property>
+            <property name="javax.persistence.jdbc.password" value=""></property>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
-            <property name="hibernate.show_sql" value="true"/>
-            <property name="hibernate.transaction.flush_before_completion"
-                      value="true"/>
-            <property name="hibernate.cache.provider_class" value="org.hibernate.cache.HashtableCacheProvider"/>
         </properties>
     </persistence-unit>
-
 </persistence>
