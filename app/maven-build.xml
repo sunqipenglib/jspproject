@@ -87,11 +87,10 @@
            nowarn="false" 
            debug="true" 
            optimize="false" 
-           deprecation="true" 
-           target="1.1" 
+           deprecation="true"
            verbose="false" 
            fork="false" 
-           source="1.3">
+           source="1.6">
       <src>
         <pathelement location="${maven.build.srcDir.0}"/>
       </src>
