@@ -42,11 +42,6 @@
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
             <artifactId>commons-email</artifactId>
             <version>1.2</version>
         </dependency>
@@ -69,7 +64,7 @@
                 <artifactId>maven-ant-plugin</artifactId>
                 <version>2.3</version>
                 <configuration>
-                    <overwrite>false</overwrite>
+                    <overwrite>true</overwrite>
                 </configuration>
                 <executions>
                     <execution>
