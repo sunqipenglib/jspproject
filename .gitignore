@@ -1,3 +1,5 @@
 # Package Files #s
 jsf/.idea/
 jsf/target/
+*/.idea/
+*/target/
