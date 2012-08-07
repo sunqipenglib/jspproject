@@ -20,7 +20,7 @@
         <echo message="Please run: $ant -projecthelp"/>
     </target>
 
-    <target name="main" depends="app-from-maven.compile">
+    <target name="main" depends="compile">
         <java classname="edu.sun.app.Main">
             <classpath path="${maven.build.outputDir}"/>
             <classpath refid="build.classpath"></classpath>
