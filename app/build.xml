@@ -22,7 +22,7 @@
 
     <target name="main" depends="app-from-maven.compile">
         <java classname="edu.sun.app.Main">
-            <classpath location="${maven.build.outputDir}"/>
+            <classpath path="${maven.build.outputDir}"/>
             <classpath refid="build.classpath"></classpath>
         </java>
 
