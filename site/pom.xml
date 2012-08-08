@@ -56,6 +56,7 @@
         <jsf-mojarra.version>2.1.7</jsf-mojarra.version>
         <jetty.maven.plugin.version>8.1.3.v20120416</jetty.maven.plugin.version>
         <openwebbeans.version>1.1.4</openwebbeans.version>
+        <jsf>myfaces</jsf>
     </properties>
 
     <build>
@@ -158,6 +159,7 @@
                     <name>jsf</name>
                     <value>myfaces</value>
                 </property>
+                <activeByDefault>true</activeByDefault>
             </activation>
             <!-- Include MyFaces jars into the war -->
             <dependencies>
@@ -278,7 +280,7 @@
                                 <groupId>org.apache.myfaces.core</groupId>
                                 <artifactId>myfaces-impl</artifactId>
                                 <version>${jsf-myfaces.version}</version>
-                                <scope>runtime</scope>
+                                <scope>compile</scope>
                             </dependency>
                             <dependency>
                                 <groupId>org.apache.geronimo.specs</groupId>
@@ -308,31 +310,31 @@
                                 <groupId>org.apache.openwebbeans</groupId>
                                 <artifactId>openwebbeans-impl</artifactId>
                                 <version>${openwebbeans.version}</version>
-                                <scope>runtime</scope>
+                                <scope>compile</scope>
                             </dependency>
                             <dependency>
                                 <groupId>org.apache.openwebbeans</groupId>
                                 <artifactId>openwebbeans-jsf</artifactId>
                                 <version>${openwebbeans.version}</version>
-                                <scope>runtime</scope>
+                                <scope>compile</scope>
                             </dependency>
                             <dependency>
                                 <groupId>org.apache.openwebbeans</groupId>
                                 <artifactId>openwebbeans-web</artifactId>
                                 <version>${openwebbeans.version}</version>
-                                <scope>runtime</scope>
+                                <scope>compile</scope>
                             </dependency>
                             <dependency>
                                 <groupId>org.apache.openwebbeans</groupId>
                                 <artifactId>openwebbeans-spi</artifactId>
                                 <version>${openwebbeans.version}</version>
-                                <scope>runtime</scope>
+                                <scope>compile</scope>
                             </dependency>
                             <dependency>
                                 <groupId>org.apache.openwebbeans</groupId>
                                 <artifactId>openwebbeans-resource</artifactId>
                                 <version>${openwebbeans.version}</version>
-                                <scope>runtime</scope>
+                                <scope>compile</scope>
                             </dependency>
                         </dependencies>
                     </plugin>

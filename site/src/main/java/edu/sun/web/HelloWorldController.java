@@ -18,52 +18,47 @@
 */
 package edu.sun.web;
 
-import javax.inject.Named;
-import javax.inject.Inject;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  * A typical simple backing bean, that is backed to <code>helloWorld.xhtml</code>
  */
 @Named("helloWorld")
 @RequestScoped
-public class HelloWorldController
-{
+public class HelloWorldController {
 
     //properties
     private String name;
-    @Inject private GreetingService greetingService;
+    @Inject
+    private GreetingService greetingService;
 
     /**
      * default empty constructor
      */
-    public HelloWorldController()
-    {
+    public HelloWorldController() {
     }
 
     /**
      * Method that is backed to a submit button of a form.
      */
-    public String send()
-    {
+    public String send() {
         //do real logic, return a string which will be used for the navigation system of JSF
         return "page2.xhtml";
     }
 
-    public String getGreeting()
-    {
+    public String getGreeting() {
         return greetingService.createGreeting(name);
     }
-	
+
     //-------------------getter & setter
 
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
 
-    public void setName(String name)
-    {
+    public void setName(String name) {
         this.name = name;
     }
 
